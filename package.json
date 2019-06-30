@@ -1,0 +1,33 @@
+{
+  "name": "scrapeallnews",
+  "version": "1.0.0",
+  "description": "web app that lets users view and leave comments on the latest news.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucy839/ScrapeAllNews.git"
+  },
+  "keywords": [
+    "express",
+    "mongoose",
+    "cheerio",
+    "axios"
+  ],
+  "author": "Youngju Lucy Lee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucy839/ScrapeAllNews/issues"
+  },
+  "homepage": "https://github.com/lucy839/ScrapeAllNews#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "mongojs": "^2.6.0",
+    "mongoose": "^5.6.1"
+  }
+}
