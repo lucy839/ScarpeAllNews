@@ -12,60 +12,80 @@ var db = mongojs(databaseUrl, collections);
 
 
 module.exports = function (app) {
-    // A GET route for scraping the echoJS website
-    app.get("/scrape", function (req, res) {
-        // First, we grab the body of the html with axios
-        axios.get("https://www.nytimes.com/column/global-health").then(function (response) {
-            // Then, we load that into cheerio and save it to $ for a shorthand selector
-            var $ = cheerio.load(response.data);
-        var results = [];
-            // Now, we grab every h2 within an article tag, and do the following:
-            $(".css-ye6x8s").each(function (i, element) {
-                // var time = $(element).find("time").text();
-                var title = $(element).find("h2").text();
-                var summary = $(element).find("p").text();
-                var link = $(element).find("a").attr("href");
-                var img = $(element).find("figure").attr("itemid");
-                // Save these results in an object that we'll push into the results array we defined earlier
-                if (title && summary && link && img) {
-                    // Insert the data in the scrapedData db
-                    db.scrapedData.insert({
-                        title: title,
-                        summary :summary,
-                        link: "https://www.nytimes.com" + link,
-                        img: img
-                    },
-                    function(err, inserted) {
-                      if (err) {
-                        // Log the error if one is encountered during the query
-                        console.log(err);
-                      }
-                      else {
-                        // Otherwise, log the inserted data
-                        console.log(inserted);
-                      }
-                    });
-                  }
-                // results.push({
-                //     // time: time,
-                //     title: title,
-                //     summary :summary,
-                //     link: "https://www.nytimes.com" + link,
-                //     img: img
-                // });
-               
-                // console.log(element)
+  // A GET route for scraping the echoJS website
+  app.get("/scrape", function (req, res) {
+    // First, we grab the body of the html with axios
+    axios.get("https://www.nytimes.com/column/global-health").then(function (response) {
+      // Then, we load that into cheerio and save it to $ for a shorthand selector
+      var $ = cheerio.load(response.data);
+      var results = [];
+      // Now, we grab every h2 within an article tag, and do the following:
+      $(".css-ye6x8s").each(function (i, element) {
+        // var time = $(element).find("time").text();
+        var title = $(element).find("h2").text();
+        var summary = $(element).find("p").text();
+        var link = $(element).find("a").attr("href");
+        var img = $(element).find("figure").attr("itemid");
+        // Save these results in an object that we'll push into the results array we defined earlier
+        if (title && summary && link && img) {
+          // Insert the data in the scrapedData db
+          db.scrapedData.insert({
+            title: title,
+            summary: summary,
+            link: "https://www.nytimes.com" + link,
+            img: img
+          },
+            function (err, inserted) {
+              if (err) {
+                // Log the error if one is encountered during the query
+                console.log(err);
+              }
+              else {
+                // Otherwise, log the inserted data
+                console.log(inserted);
+              }
             });
+        }
+        // results.push({
+        //     // time: time,
+        //     title: title,
+        //     summary :summary,
+        //     link: "https://www.nytimes.com" + link,
+        //     img: img
+        // });
 
-            // // Log the results once you've looped through each of the elements found with cheerio
-            // console.log(results);
-         
-        });
-        res.send("Scrape Complete");
+        // console.log(element)
+      });
+
+      // // Log the results once you've looped through each of the elements found with cheerio
+      // console.log(results);
 
     });
+    res.send("Scrape Complete");
+
+  });
+  // Retrieve data from the db
+  app.get("/all", function (req, res) {
+    // Find all results from the scrapedData collection in the db
+    db.scrapedData.find({}, function (error, found) {
+      // Throw any errors to the console
+      if (error) {
+        console.log(error);
+      }
+      // If there are no errors, send the data to the browser as json
+      else {
+        var hbsObject = {
+          news: found
+        };
+        console.log(found)
+        res.render("index", hbsObject );
+        // res.json(found);
+        // res.render("index");
+      }
+    });
+  });
 };
-        
+
         // Save an empty result object
         // var result = {};
 

@@ -1,63 +1,21 @@
 <div class="container app">
-  <div class="row">
-    {{!-- Uneaten Burger --}}
-    <div class="col-md-6">
-      <ol>
-        {{#each burgers}}
-        {{#unless this.devoured}}
-        <div class="input-group">
-          <li><b>{{this.burger_name}}</b>
-
-            {{!-- eat burger --}}
-            <form action="burger/eat/{{id}}" method="POST">
-              <div class="form-group">
-                <label for="customer">Who is eating this burger?</label>
-                <input type="text" name="customer" placeholder="Customer" required>
-              </div>
-              <button type="submit" class="eat"><i class="fas fa-utensils"></i> </button>
-            </form>
-
-            {{!-- delete order --}}
-            <form action="burger/delete/{{this.id}}" method="POST">
-              <button type="submit" class="delete"><i class="fas fa-trash-alt"></i></button>
-            </form>
-          </li>
-        </div>
-        {{/unless}}
-        {{/each}}
-    </div>
-
-    {{!-- Eaten Burger --}}
-    <div class="col-md-6">
-      <ol class='burgerEaten'>
-        {{#each burgers}}
-        {{#if this.devoured}}
-        <li><b>{{this.burger_name}} </b> eaten by {{this.Customer.customer_name}}</li>
-        {{/if}}
-        {{/each}}
-      </ol>
+  <div class = "row">
+    <div class = "col-md-9">
+  {{#each news}}
+  <h3>{{this.title}}</h3>
+  <p>{{this.summary}}</p>
+  <img src ="{{this.img}}">
+  <a href = {{this.link}}>{{this.link}}</a>
+  <br><hr><br>
+  {{/each}}
     </div>
   </div>
+
+  
 </div>
 
-<hr>
+  {{!-- jQuery --}}
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<div class="container app">
-  {{!-- Add New Burger --}}
-  <div class="row">
-    <div class="col-md-12">
-      <h2>Enter a burger you want to eat and submit!</h2>
-      <form action="/burgers" method="POST">
-        <input type="text" id="name" name="burger_name" placeholder="World's best burger" required>
-        <button type="submit" class="add">Submit <i class="fas fa-clipboard-list"></i></button>
-            <div class="invalid-feedback">
-          Please enter burger name
-        </div>
-      </form>
-    </div>
-  </div>
-      {{!-- jQuery --}}
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-      <script src="/js/app.js"></script>
+  <script src="/js/app.js"></script>
