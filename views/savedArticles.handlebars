@@ -1,23 +1,41 @@
-{{!-- <p>hi</p> --}}
+<p>hi</p>
 <div class="container app">
-  <div class = "row">
-    <div class = "col-md-9">
-  {{#each news}}
-{{!-- {{#if saved}} --}}
-<h3>{{this.title}}</h3>
-  <p>{{this.summary}}</p>
-  <img src ="{{this.img}}">
-  <a href = {{this.link}}>{{this.link}}</a>
-  <button data-id =  {{this._id}} class = "notes" type = 'button'> notes </button>
-  <br><hr><br>
-  {{!-- {{/if}} --}}
-  {{/each}}
+  <div class="row">
+    <div class="col-md-9">
+      {{#if news}}
+      {{#each news}}
+      {{!-- {{#if saved}} --}}
+      <h3>{{this.title}}</h3>
+      <p>{{this.summary}}</p>
+      <img src="{{this.img}}">
+      <a href={{this.link}}>{{this.link}}</a>
+      {{!-- <button data-id={{this._id}} class="notes" type='button'> notes </button> --}}
+      <button type="button" class="btn btn-default addNote" data-toggle="modal" data-target="#noteModal{{this._id}}" data-id={{this._id}}>Add a Note</button>
+
+      <button data-id={{this._id}} class="deleteSaved" type='button'> DELETE FROM SAVED </button>
+
+      <br>
+      <hr><br>
+      {{!-- {{/if}} --}}
+      {{/each}}
+         
+
+      {{else}}
+       <div class="panel panel-default">
+            <div class="panel-body">
+                <h4>You have no saved articles.</h4>            </div>
+              </div>
+      {{/if}}
     </div>
-    <div class = "col-md-3">
-      <div id = "notes"></div>
+    <div class="col-md-3">
+      <div id="notes"></div>
     </div>
   </div>
-    <script src="https://code.jquery.com/jquery.js"></script>
+  {{#each news}}
+    {{> notes-modal }}
+{{/each}}
+  <script src="https://code.jquery.com/jquery.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <script src="/js/app.js"></script>
+  
