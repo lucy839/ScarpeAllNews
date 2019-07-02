@@ -1,31 +1,31 @@
 <div class="container app">
+  {{#if news}}
+  {{#each news}}
   <div class="row">
     {{!-- if there are news, display --}}
-    {{#if news}}
-    {{#each news}}
-
     <div class="col-md-9">
       <h3>{{this.title}}</h3>
       <p>{{this.summary}}</p>
-      <img src="{{this.img}}">
       <a href={{this.link}}>{{this.link}}</a>
     </div>
     <div class="col-md-3">
+      <img src="{{this.img}}">
       {{#unless this.saved}}
-      <button data-id={{this._id}} class='save' type='button'> save Article </button>
+      <button data-id={{this._id}} class='btn btn-default save' type='button'> save Article </button>
       {{/unless}}
     </div>
-
-    {{/each}}
-    {{!-- else display noarticle --}}
-    {{else}}
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <h4>You have no articles yet. click scrape button to get article!</h4>
-      </div>
-    </div>
-    {{/if}}
   </div>
+  {{/each}}
+
+  {{!-- else display noarticle --}}
+  {{else}}
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h4>You have no articles yet. click scrape button to get article!</h4>
+    </div>
+  </div>
+  {{/if}}
+
 </div>
 {{!-- jQuery --}}
 <script src="https://code.jquery.com/jquery.js"></script>

@@ -2,3 +2,18 @@
     background-image: url("../images/newspaper.jpeg");
     background-size:cover;
 }
+
+.save, .addNote, .deleteSaved {
+    background: pink;
+}
+.save:hover, .addNote:hover, .deleteSaved:hover {
+    background :rgb(250, 131, 151);
+}
+.row, .addNote, .save, .deleteSaved {
+    margin-bottom: 5%;
+}
+.row {
+    background: rgba(254, 205, 213, 0.3);
+    padding:2%;
+    border-radius: 10px;
+}

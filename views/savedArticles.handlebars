@@ -1,37 +1,40 @@
 <div class="container app">
+  {{#if news}}
+  {{#each news}}
   <div class="row">
 
     {{!-- if there are news, display--}}
-    {{#if news}}
-    {{#each news}}
-    <h3>{{this.title}}</h3>
+
+
     <div class="col-md-9">
+      <h3>{{this.title}}</h3>
       <p>{{this.summary}}</p>
-      <img src="{{this.img}}">
+
       <a href={{this.link}}>{{this.link}}</a>
     </div>
     <div class="col-md-3">
+      <img src="{{this.img}}">
       <button type="button" class="btn btn-default addNote" data-toggle="modal" data-target="#noteModal{{this._id}}"
-        data-id={{this._id}}>Add a Note</button>
+        data-id={{this._id}}>NOTE</button>
       <button data-id={{this._id}} class="btn btn-default deleteSaved" type="button" data-toggle="modal">
-        DELETE FROMSAVED </button>
+        DELETE FROM SAVED </button>
       <br>
     </div>
     <hr>
     <br>
-    {{/each}}
-    {{!-- else display no saved article --}}
-    {{else}}
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <h4>You have no saved articles.</h4>
-      </div>
+  </div>
+  {{/each}}
+
+  {{!-- else display no saved article --}}
+  {{else}}
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h4>You have no saved articles.</h4>
     </div>
-    {{/if}}
   </div>
-  <div class="col-md-3">
-    <div id="notes"></div>
-  </div>
+  {{/if}}
+
+
 </div>
 {{!-- include notes modal --}}
 {{#each news}}

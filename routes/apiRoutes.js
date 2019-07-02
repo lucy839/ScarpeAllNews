@@ -15,7 +15,6 @@ module.exports = function (app) {
       });
   });
 
-  // ****** add only if new news *******
   // A GET route for scraping the nytimes website
   app.get("/scrape", function (req, res) {
     axios.get("https://www.nytimes.com/section/health").then(function (response) {
@@ -45,7 +44,6 @@ module.exports = function (app) {
     });
 
   });
-
 
   // A GET route for updating particular article to be saved
   app.get("/articlesSaved/:id", function (req, res) {

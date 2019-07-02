@@ -30,7 +30,6 @@ app.use(express.static("public"));
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scrapeAllNews";
 mongoose.connect(MONGODB_URI);
-// mongoose.connect("mongodb://localhost/scrapeAllNews", { useNewUrlParser: true });
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 app.listen(PORT, function () {
