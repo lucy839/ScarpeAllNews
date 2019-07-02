@@ -5,8 +5,12 @@ $("#scrape").on("click", function () {
     url: "/scrape"
   })
     .then(function (result) {
-      console.log(result)
-      window.location = "/"
+      if (result == "MongoError") {
+        alert("No new News to scrape!")
+      } else {
+        window.location = "/"
+      }
+
     });
 });
 
@@ -17,6 +21,7 @@ $(".save").on("click", function () {
     method: "GET",
     dataType: "json",
     url: "/articlesSaved/" + thisId
+
   })
     .then(function (data) {
       window.location = "/"

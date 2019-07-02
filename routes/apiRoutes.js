@@ -35,10 +35,10 @@ module.exports = function (app) {
 
         db.Article.create(results)
           .then(function (response) {
-            res.json(response);
+            console.log(response);
           })
           .catch(function (err) {
-            console.log(err);
+            return res.json(err.name)
           });
       });
     });
@@ -52,7 +52,7 @@ module.exports = function (app) {
         res.json(dbArticle);
       })
       .catch(function (err) {
-        res.json(err);
+        console.log(err);
       });
   });
 
@@ -63,7 +63,7 @@ module.exports = function (app) {
         res.render("savedArticles", { news: dbArticle });
       })
       .catch(function (err) {
-        res.json(err);
+        console.log(err);
       });
   });
 
@@ -74,7 +74,7 @@ module.exports = function (app) {
         res.json(dbArticle);
       })
       .catch(function (err) {
-        res.json(err);
+        console.log(err);
       });
   });
 
@@ -86,7 +86,7 @@ module.exports = function (app) {
         res.json(dbArticle);
       })
       .catch(function (err) {
-        res.json(err);
+        console.log(err);
       });
   });
 
@@ -100,7 +100,7 @@ module.exports = function (app) {
         res.json(dbArticle);
       })
       .catch(function (err) {
-        res.json(err);
+        console.log(err);
       });
   });
 
@@ -114,7 +114,7 @@ module.exports = function (app) {
         db.Article.updateOne({ "note": req.params.id }, { $pull: { "note": req.params.id } })
           .then(function (err) {
             if (err) {
-              res.send(err);
+              console.log(err);
             }
             else {
               res.send("Note Deleted");
