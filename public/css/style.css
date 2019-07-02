@@ -3,10 +3,10 @@
     background-size:cover;
 }
 
-.save, .addNote, .deleteSaved,.saveNote {
+.save, .addNote, .deleteSaved,.saveNote,.deleteNote {
     background: pink;
 }
-.save:hover, .addNote:hover, .deleteSaved:hover, .saveNote:hover {
+.save:hover, .addNote:hover, .deleteSaved:hover, .saveNote:hover, .deleteNote:hover {
     background :rgb(250, 131, 151);
 }
 img, .row, .addNote{
@@ -27,4 +27,7 @@ a:hover {
 }
 a, h1, h3, h4, h5,p{
     font-family: 'Literata', serif;
+}
+.deleteNote{
+    border:none;
 }

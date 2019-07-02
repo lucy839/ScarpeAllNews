@@ -55,7 +55,7 @@ $(".saveNote").on("click", function () {
       }
     }).then(function (data) {
       $("#noteText" + thisId).val("");
-      $(".modalNote").modal("hide");
+      $('.modalNote').modal("hide"); $('body').removeClass('modal-open'); $('.modal-backdrop').remove();
       window.location = "/articlesSaved"
 
     });
@@ -68,8 +68,8 @@ $(".deleteNote").on("click", function () {
   $.ajax({
     method: "DELETE",
     url: "/notesDelete/" + noteId
-  }).done(function (data) {
-    $(".modalNote").modal("hide");
+  }).then(function (data) {
+    $('.modalNote').modal("hide"); $('body').removeClass('modal-open'); $('.modal-backdrop').remove();
     window.location = "/articlesSaved"
   })
 });

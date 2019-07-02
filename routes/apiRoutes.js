@@ -94,7 +94,7 @@ module.exports = function (app) {
   app.post("/articles/:id", function (req, res) {
     db.Note.create(req.body)
       .then(function (dbNote) {
-        return db.Article.updateOne({ _id: req.params.id }, { note: dbNote._id }, { new: true });
+        return db.Article.updateOne({ _id: req.params.id }, { $push: { note: dbNote._id } });
       })
       .then(function (dbArticle) {
         res.json(dbArticle);
@@ -112,13 +112,11 @@ module.exports = function (app) {
       }
       else {
         db.Article.updateOne({ "note": req.params.id }, { $pull: { "note": req.params.id } })
-          .then(function (err) {
+          .then(function (result, err) {
             if (err) {
               console.log(err);
             }
-            else {
-              res.send("Note Deleted");
-            }
+            res.json(result);
           });
       }
     });
