@@ -1,45 +1,50 @@
-<p>hi</p>
 <div class="container app">
   <div class="row">
+
+    {{!-- if there are news, display--}}
+    {{#if news}}
+    {{#each news}}
+    <h3>{{this.title}}</h3>
     <div class="col-md-9">
-      {{#if news}}
-      {{#each news}}
-      {{!-- {{#if saved}} --}}
-      <h3>{{this.title}}</h3>
       <p>{{this.summary}}</p>
       <img src="{{this.img}}">
       <a href={{this.link}}>{{this.link}}</a>
-      {{!-- <button data-id={{this._id}} class="notes" type='button'> notes </button> --}}
-      <button type="button" class="btn btn-default addNote" data-toggle="modal" data-target="#noteModal{{this._id}}" data-id={{this._id}}>Add a Note</button>
-
-      <button data-id={{this._id}} class="deleteSaved" type='button'> DELETE FROM SAVED </button>
-
-      <br>
-      <hr><br>
-      {{!-- {{/if}} --}}
-      {{/each}}
-         
-
-      {{else}}
-       <div class="panel panel-default">
-            <div class="panel-body">
-                <h4>You have no saved articles.</h4>            </div>
-              </div>
-      {{/if}}
     </div>
     <div class="col-md-3">
-      <div id="notes"></div>
+      <button type="button" class="btn btn-default addNote" data-toggle="modal" data-target="#noteModal{{this._id}}"
+        data-id={{this._id}}>Add a Note</button>
+      <button data-id={{this._id}} class="btn btn-default deleteSaved" type="button" data-toggle="modal">
+        DELETE FROMSAVED </button>
+      <br>
     </div>
+    <hr>
+    <br>
+    {{/each}}
+    {{!-- else display no saved article --}}
+    {{else}}
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h4>You have no saved articles.</h4>
+      </div>
+    </div>
+    {{/if}}
   </div>
-  {{#each news}}
-    {{> notes-modal }}
+  <div class="col-md-3">
+    <div id="notes"></div>
+  </div>
+</div>
+{{!-- include notes modal --}}
+{{#each news}}
+{{> notes-modal }}
 {{/each}}
- 
-  <script src="https://code.jquery.com/jquery.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-  <script src="/js/app.js"></script> 
-     <!-- Bootstrap jquey -->
-    {{!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>  
+{{!-- javascript and jquery --}}
+<script src="https://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/app.js"></script>
+
+{{!-- Bootstrap jquey --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
