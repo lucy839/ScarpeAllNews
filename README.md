@@ -8,6 +8,7 @@
 ## Demo
 - The demo of the burger eating application can be found:
    https://lit-ravine-62322.herokuapp.com/
+   - ![Alt text](public/images/demo.png?raw=true  "demo")
 
 ## Installation
 - To run the application locally, first clone this repository with the following command.
